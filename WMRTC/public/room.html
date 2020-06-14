@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Wellbeingtech</title>
+    <link rel="shortcut icon" type="image/x-icon" href="https://images.squarespace-cdn.com/content/v1/5c0a0895e2ccd1eb692ec035/1584521283272-9ZUPC96H7JA8R5IXUXOM/ke17ZwdGBToddI8pDm48kL2oMghtyAjDAqcUY8RLwwvlfiSMXz2YNBs8ylwAJx2qLijIv1YpVq4N1RMuCCrb3iJz4vYg48fcPCuGX417dnbBbbKAF2ao_zKQo98DnTEhugPb1bEP-BxLNrVbrtlgkwoyyEsAbPHhHcQMU6bWQFI/favicon.ico?format=100w">
+    <link rel="stylesheet" type="text/css" href="/dist/css/index.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+
+</head>
+
+<body> 
+
+    <div  name="manual" class="fixedbutton">
+        <div id="Attachment" onclick="getFile()"><img src="/dist/img/attach.png" alt="Attach"></div>
+        
+        <div style='height: 0px;width: 0px; overflow:hidden;'><input id="fileIpt" type="file" value="upload" onchange="sub(this)" /></div>
+        
+    </div>
+
+    <div id="videos" style="width: 100%; height: 100%;">
+        <video id="me" class="local-video" autoplay></video>
+    </div>
+    <div id="files">
+    </div>
+    <script>
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+        function getFile() {
+            document.getElementById("fileIpt").click();
+        }
+
+        function sub(obj) {
+            var file = obj.value;
+            var fileName = file.split("\\");
+            document.getElementById("Attachment").innerHTML = fileName[fileName.length - 1]; 
+            rtc.shareFile("fileIpt");
+            event.preventDefault();
+        }
+    </script>
+
+<script type="text/javascript" src="/dist/js/WMRTC-client.js"></script>
+<script type="text/javascript" src="/dist/js/conn.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <title>Eyes - Wellbeing Tech</title>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    </head>
+    <body>
+        <h2>People in Need</h2><hr><p><br></p>
+            <ul id="roomholder"> 
+                 
+            </ul>
+    </body>
+    <script>
+        var self=this;
+        self.rooms = {};
+        var intervalID = setInterval(function() {
+            loadRooms();
+        }, 3000);
+        function loadRooms() {
+            $.when(
+                $.getJSON( "/getrooms" ),
+                     $.ready
+            ).done(function( data ) {
+               self.rooms = data[0];
+               $("#roomholder").empty();
+               $.each(self.rooms, function (key, value) {                
+                    $("#roomholder").append("<li></li>").append("<div></div>").append("<span>Room - " + value + "</span>&nbsp;&nbsp; <a href=room.html?roomid=" + value +"><Button>Join</Button></a>");
+                });
+            });
+        }
+
+        $.when( $.ready ).then(function() {
+            loadRooms()
+        }); 
+    </script>
+</html>
